@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script src="http://flesler.com/jquery/scrollTo/js/jquery.scrollTo-min.js"></script>
+<script>
+
+$(document).ready(function(){
+	
+	 $('#nav a[href^="#"]').click(function() {
+          var target = $(this.hash);
+          if (target.length == 0) target = $('a[name="' + this.hash.substr(1) + '"]');
+          if (target.length == 0) target = $('html');
+          $('html, body').animate({ scrollTop: target.offset().top }, 500);
+          return false;
+      });
+
+	$(window).bind('scroll',function(e){
+    parallaxScroll();
+	});
+ 
+	function parallaxScroll(){
+    var scrolled = $(window).scrollTop();
+	$('#top').css({'background-position':+((scrolled*0.1))+'%','transition': 'background-position 0.2s linear'});
+	}
+});
+
+</script>
+<style>
+html, body{
+	margin:0;
+	padding:0;
+}
+#top, #middle, #bottom{
+	height:750px;
+	width:100%;
+	background-color:#f90;
+}
+#top{
+	background-image:url(http://media-cache-ec6.pinterest.com/736x/10/3a/72/103a728802e6003775a17733347f2f76.jpg);
+	background-posiiton:center;
+	background-repeat:no-repeat;
+}
+#middle{
+	background-color:#f94;
+}
+#bottom{
+	background-color:#f95;
+}
+#objects{
+	height:20px;
+	width:20px;
+	background-color:red;
+	top:20%;
+	left:50%;
+	position:absolute;
+}
+#nav{
+	position:fixed;
+}
+</style>
+</head>
+
+<body>
+<ul id="nav">
+
+<li><a href="#top">uno</a></li>
+<li><a href="#middle">dos</a></li>
+<li><a href="#bottom">tres</a></li>
+
+</ul>
+<div id="top">
+	<!--div id="objects"></div-->
+</div>
+
+<div id="middle">
+
+</div>
+
+<div id="bottom">
+
+</div>
+
+</body>
+
+</html>
